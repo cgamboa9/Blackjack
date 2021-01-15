@@ -11,8 +11,20 @@
         display: grid;
         align-items: center;
         justify-items: center;
+        background-color: white;
       }
 
+      .game-area {
+        display: grid;
+        background-color:rgb(68, 163, 68);
+      }
+      .logo-icon {
+        height: 300px;
+        width: 300px;
+        align-items: center;
+        display: grid;
+        
+      }
     </style>
   </head>
   <body>
@@ -32,6 +44,8 @@
               <div id="player-1" class="card"></div>
             </div>
           </div>
+        
+          <img class="logo-icon" src="logo.jpeg"/>
 
       </div>
     
@@ -120,9 +134,39 @@ var get2Cards = () => {
       playerCards = get2Cards()
 
       displayCards()
-    }
-  startGame()
+      setTimeout(declareWinner, 2000)
 
+    }
+  
+
+  var declareWinner = () => {
+      var dealerTotal = 0
+      var playerTotal = 0
+
+      dealerCards.forEach((card) => {
+        dealerTotal = dealerTotal + card.value
+      })
+
+      playerCards.forEach((card) => {
+        playerTotal = playerTotal + card.value
+      })
+
+      var message
+      if (playerTotal > dealerTotal) {
+        message = "Great! You beat the dealer, " + playerTotal + " to " + dealerTotal + "."
+      } else {
+        message = "Sorry! The dealer won, " + dealerTotal + " to " + playerTotal + "."
+      }
+
+      alert(message)
+
+      var answer = confirm("Want to play again? Press OK to restart the game.")
+      if (answer) {
+        startGame()
+      }
+    }
+
+    startGame()
   
     
   </script>
